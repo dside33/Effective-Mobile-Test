@@ -1,0 +1,7 @@
+- hosts: all
+  become: true
+  vars:
+    server_name: localhost
+  roles:
+    - git_clone
+    - setup_docker

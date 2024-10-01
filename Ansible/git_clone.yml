@@ -1,0 +1,17 @@
+---
+# tasks file for git_clone
+
+- name: Add GitHub to known hosts
+  ansible.builtin.shell: |
+    ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+  args:
+    creates: ~/.ssh/known_hosts
+
+- name: Clone git
+  git:
+    repo: git@github.com:dside33/devops-test.git
+    key_file: /home/{{ ansible_user }}/.ssh/id_rsa
+    dest: /home/{{ ansible_user }}/repos/
+    clone: yes
+    update: yes
+
